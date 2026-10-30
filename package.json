@@ -7,7 +7,7 @@
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "check": "node --check src/main.js && node --check src/content.js && node --test tests/content.test.js"
+    "check": "node --check src/main.js && node --check src/content.js && node --check src/migration.js && node --check src/migration-model.js && node --test tests/*.test.js"
   },
   "devDependencies": { "vite": "^7.3.0" },
   "engines": { "node": ">=22.12.0" }

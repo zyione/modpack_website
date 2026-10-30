@@ -43,6 +43,24 @@ Edit **public/site-config.json**:
 
 Missing download/invite/address values are intentionally empty: the site shows an honest host-contact message and a working checklist rather than fake buttons. Setting values enables their corresponding actions automatically. No secrets belong in this public file. Rebuild/redeploy after edits.
 
+## Migration field guide
+
+Open **`/migration/`** for the NeoForge 1.21.1 planning explorer. The homepage links to it in the navigation and footer. It includes all 429 distinct audited client/server mods and defaults to the 338 installed server mods.
+
+Search by name, ID, installed filename or target option. Combine availability, category, installation, importance, difficulty and removal-effect filters; sort results; open a mod for its full finding and checked source. Filters and the selected mod are encoded in shareable page URLs. CSV export includes the entire filtered result, across all pages.
+
+`public/migration/audit.json` is a static research snapshot, checked 30 October 2026. It intentionally contains only reviewed public fields—no server credentials, player records, log contents or local paths. Native/unofficial availability is separate from verified world conversion. Difficulty is an estimate, and the chunk evidence is a small presence sample.
+
+To refresh from a newly reviewed local audit:
+
+```sh
+python scripts/import-migration-audit.py /absolute/path/to/classified.json
+npm run check
+npm run build
+```
+
+The importer validates the current snapshot's expected count; revise that assertion deliberately if a new audit changes the inventory. Update snapshot labels and counts in the importer/page alongside a future audit. Vite builds both the homepage and `migration/index.html`; Vercel serves the latter at `/migration/`.
+
 ## Edit content and images
 
 - `src/content.js`: featured mods, searchable perks, first steps, caveats, gallery captions.
